@@ -41,7 +41,7 @@ Be sure to have the NumPy installed. If you don't have it, you can install it wi
 
 To run the code, you can use the following command:
     
-    python dynamic_programming.py
+    python main.py
 
 # Markov Decision Process 
 A Markov decision process (MDP) is a discrete-time stochastic control process. It provides a mathematical framework for modeling decision making in situations where outcomes are partly random and partly under the control of a decision maker. MDPs are useful for studying optimization problems solved via dynamic programming and reinforcement learning. The goal in a MDP is to find an optimal policy $\pi$ for the agent.

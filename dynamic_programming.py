@@ -7,7 +7,6 @@ class DynamicProgramming:
     def __init__(self):
         self.V_s = None # Will store the value solution table
         self.Q_sa = None # Will store the action-value solution table
-
         
     def value_iteration(self,env,gamma = 1.0, theta=0.001):
         ''' Executes value iteration on env. 
@@ -47,7 +46,6 @@ class DynamicProgramming:
         self.V_s = V_s
         return
 
-
     def Q_value_iteration(self,env,gamma = 1.0, theta=0.001):
         ''' Executes Q-value iteration on env. 
         gamma is the discount factor of the MDP
@@ -84,7 +82,6 @@ class DynamicProgramming:
                 break
         self.Q_sa = Q_sa
         return
-           
            
     def execute_policy(self,env,table='V'):
         # Execute the greedy action, starting from the initial state
@@ -123,7 +120,7 @@ class DynamicProgramming:
             # Ask the user what he/she wants
             while True:
                 if greedy_action is not None:
-                    print('Greedy action= {}'.format(greedy_action))    
+                    print('Greedy action = {}'.format(greedy_action))    
                     your_choice = input('Choose an action by typing it in full, then hit enter. Just hit enter to execute the greedy action:')
                 else:
                     your_choice = input('Choose an action by typing it in full, then hit enter. Available are {}'.format(env.actions))
@@ -145,22 +142,11 @@ class DynamicProgramming:
         print("Found the goal! Exiting \n ...................................................................... ")
     
 
+###
+# Helper functions
+###
+
 def get_greedy_index(action_values):
     ''' Own variant of np.argmax, since np.argmax only returns the first occurence of the max. 
     Optional to uses '''
     return np.where(action_values == np.max(action_values))
-    
-    
-if __name__ == '__main__':
-    env = World('prison.txt') 
-    DP = DynamicProgramming()
-
-    # Run value iteration
-    input('Press enter to run value iteration')
-    optimal_V_s = DP.value_iteration(env)
-    # Once again with Q-values:
-    input('Press enter to run Q-value iteration')
-    optimal_Q_sa = DP.Q_value_iteration(env)
-    input('Press enter to start execution of optimal policy according to Q')
-    DP.execute_policy(env, table='Q') # execute the optimal policy
-

@@ -136,7 +136,11 @@ class World:
         ''' returns the underlying state vector for a state index '''
         return self.state_vector_list[state]
 
-### Helper functions for indices to letters                
+
+###
+# Helper functions for indices to letters  
+###
+              
 def value_of_capital_letter(letter):
     ''' Gives an index to a capital letter, i.e. 'A' -> 1, 'B' -> 2 '''
     return ord(letter) - ord('A') + 1
@@ -149,7 +153,9 @@ def index_to_character(index):
     ''' Turns index into a small lettter, i.e., 1 -> 'a', 2 -> 'b' '''
     return chr(index + 96)
 
-### Helper functions for initialization of world
+###
+# Helper functions for initialization of world
+###
     
 def read_txt_to_map(filename):
     # Reads a txt file of the world to a numpy map 
@@ -195,34 +201,3 @@ def get_unique_states_list(map_np):
     print('Identified {} free locations and {} keys, leading to {} unique states'.format(
             len(free_locations),number_of_keys,len(unique_states)))
     return unique_states, number_of_keys
-
-if __name__ == '__main__':
-    env = World('prison.txt') 
-
-    test_state = 0
-    env.print_state(test_state)
-
-    print('---- Small tests of keys and door dynamics ----')
-    test_state1 = env._state_vector_to_state(np.array([1,2,False,False]))
-    test_state2 = env._state_vector_to_state(np.array([1,2,True,False]))
-    env.print_state(test_state1)
-    env.print_state(test_state2)
-    s_prime1,r1 = env.transition_function(test_state1,'right')    
-    s_prime2,r2 = env.transition_function(test_state2,'right')    
-    print('Next state when moving right in {}: {}'.format(test_state1,s_prime1))    
-    print('Next state when moving right in {}: {}'.format(test_state2,s_prime2))    
-    env.print_state(s_prime1)
-    env.print_state(s_prime2)
-    
-    print('---- Small tests of moving the agent ----')    
-    print('Start state: {}'.format(env.get_current_state()))
-    env.print_state(env.get_current_state())
-    s_prime,r = env.act("down")    
-    print('State after moving down: {}'.format(s_prime))
-    env.print_state(s_prime)      
-    
-    #print('----- Printing all states ------')    
-    #for state in env.states:
-    #    env.print_state(state)
-    
-    
