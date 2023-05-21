@@ -73,8 +73,8 @@ Note that:
 
 # Dynamic Programming
 
-## DynamicProgramming() class
-A DynamicProgramming() object has two important attributes:
+## Dynamic Programming class
+A `DynamicProgramming` object has two important attributes:
 - `V_s`, a value table. A value table is vector of length n_states. Each element in the vector stores the value estimate for the corresponding state index, i.e. `V (s = 4) = V_s[4]`. If `V_s = None`, then you have not run any method yet to estimate the optimal value table.
 - `Q_sa`, a state-action value table. A state-action value matrix of dimensions $n\_states$ x $n\_actions$. Actions are indexed according to `World.actions = {up,down,left,right}`. For example, action up has index 0. Each element in the Q_sa matrix stores the value estimate for the corresponding state-action, i.e., `Q(s = 10,a = 0) = Q_sa[10,0]`. If `Q_sa = None`, then you have not run any method yet to estimate the optimal value table.
 
@@ -84,7 +84,7 @@ An World object has several important methods:
 - `execute_policy(self,env)` executes a policy on environment env.
 
 ## Algorithms
-The `DynamicProgramming()` class implements two dynamic programming algorithms, namely `value_iteration()` and `Q_value_iteration()`.
+The `DynamicProgramming` class implements two dynamic programming algorithms, namely `value_iteration()` and `Q_value_iteration()`.
 
 The difference between value iteration and Q-value iteration is that value iteration directly considers the value of the next state, whereas Q-value iteration considers the value of the next state-action pair.
 
@@ -94,14 +94,14 @@ $$V(s)=\sum_{a \in A}^{} \pi(a|s)\Big[\sum_{s' \in S}T(s'|s,a)[r+\gamma\cdot V(s
 
 Where $π(a|s)$ is the policy. It gives the conditional probabality of action $a$ given the state $s$.
 
-The value iteration algorithm is implemented in the `value_iteration(self,env,gamma=1.0,theta=0.001)` method of the `DynamicProgramming()` class. The algorithm terminates when the difference between the old and new value table is smaller than theta. The algorithm returns the optimal value table. The optimal value table is be stored in the `V_s` attribute of the `DynamicProgramming()` object.
+The value iteration algorithm is implemented in the `value_iteration(self,env,gamma=1.0,theta=0.001)` method of the `DynamicProgramming` class. The algorithm terminates when the difference between the old and new value table is smaller than theta. The algorithm returns the optimal value table. The optimal value table is be stored in the `V_s` attribute of the `DynamicProgramming` object.
 
 ### Q-value Iteration
 The Q-value function $Q(s,a)$ is defined as the expected return of taking an action $a$ in state $s$ and following policy $\pi$.
 $$Q(s,a)=\sum_{s' \in S}T(s'|s,a)[r+\gamma\cdot V(s')]$$
 
-The Q-value iteration algorithm is implemented in the `Q_value_iteration(self,env,gamma=1.0,theta=0.001)` method of the `DynamicProgramming()` class. The algorithm terminates when the difference between the old and new Q-value table is smaller than theta. The algorithm returns the optimal Q-value table. The optimal Q-value table is stored in the `Q_sa` attribute of the `DynamicProgramming()` object.
+The Q-value iteration algorithm is implemented in the `Q_value_iteration(self,env,gamma=1.0,theta=0.001)` method of the `DynamicProgramming` class. The algorithm terminates when the difference between the old and new Q-value table is smaller than theta. The algorithm returns the optimal Q-value table. The optimal Q-value table is stored in the `Q_sa` attribute of the `DynamicProgramming` object.
 
 ### Policy Execution
 
-The `execute_policy(self,env)` method of the `DynamicProgramming()` class executes a policy on environment env. The policy is defined by the optimal value table `V_s` or the optimal Q-value table `Q_sa`. The method returns the total reward obtained by executing the policy. The method also prints the sequence of actions taken by the agent.
+The `execute_policy(self,env)` method of the `DynamicProgramming` class executes a policy on environment env. The policy is defined by the optimal value table `V_s` or the optimal Q-value table `Q_sa`. The method returns the total reward obtained by executing the policy. The method also prints the sequence of actions taken by the agent.
