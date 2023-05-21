@@ -72,8 +72,6 @@ Note that:
 - The value of the next state is the sum of the rewards and the discounted value of the next state.
 
 # Dynamic Programming
-
-## Dynamic Programming class
 A `DynamicProgramming` object has two important attributes:
 - `V_s`, a value table. A value table is vector of length n_states. Each element in the vector stores the value estimate for the corresponding state index, i.e. `V (s = 4) = V_s[4]`. If `V_s = None`, then you have not run any method yet to estimate the optimal value table.
 - `Q_sa`, a state-action value table. A state-action value matrix of dimensions $n\_states$ x $n\_actions$. Actions are indexed according to `World.actions = {up,down,left,right}`. For example, action up has index 0. Each element in the Q_sa matrix stores the value estimate for the corresponding state-action, i.e., `Q(s = 10,a = 0) = Q_sa[10,0]`. If `Q_sa = None`, then you have not run any method yet to estimate the optimal value table.
