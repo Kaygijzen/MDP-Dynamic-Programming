@@ -1,4 +1,4 @@
-# MDP using Dynamic Programming
+# Markov decision process using Dynamic Programming
 
 ## Introduction
 In this project, we will implement dynamic programming algorithms to solve a Markov decision process (MDP). We will use the MDP to model a grid world environment, and we will use dynamic programming to find the optimal policy for the agent. We will implement the value iteration and Q-value iteration algorithms. We will then execute the optimal policy on the environment, and visualize the agent’s trajectory.
