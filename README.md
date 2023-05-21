@@ -1,7 +1,7 @@
 # MDP using Dynamic Programming
 
 ## Introduction
-In this project, we will implement dynamic programming algorithms to solve a Markov decision process (MDP). We will use the MDP to model a grid world environment, and we will use dynamic programming to find the optimal policy for the agent. We will implement the value iteration and Q-value iteration algorithms. We will then execute the optimal policy on the environment, and we will visualize the agent’s trajectory.
+In this project, we will implement dynamic programming algorithms to solve a Markov decision process (MDP). We will use the MDP to model a grid world environment, and we will use dynamic programming to find the optimal policy for the agent. We will implement the value iteration and Q-value iteration algorithms. We will then execute the optimal policy on the environment, and visualize the agent’s trajectory.
 
 The goal of the agent is to find the goal state in the environment. The agent can move in four directions: up, down, left, and right. The agent can hold keys, and can open doors. The agent can only move into a door if it holds the corresponding key. The agent can only hold one key at a time. The agent receives a reward (or penalty) of $−1$ for every transition, except when it reaches the goal: the reward is then equal to 10 times the numeric element at the goal. So, in the example below, the reward at the goal is equal to 30.
 
@@ -16,20 +16,20 @@ The environment is coded in world.py. It contains the class definition of `World
 ### prison.txt
 You can define the environment in a txt file. An example is provided in prison.txt:
 
-    ######
-    #* A #
-    #a # #
-    #### #
-    #    #
-    # ##B#
-    #b##3#
-    ######
+    # # # # # #
+    # *   A   # 
+    # a   #   #
+    # # # #   # 
+    #         #
+    #   # # B #
+    # b # # 3 #
+    # # # # # #
 
 We use the following encoding:
 |Symbol | Meaning
 |-------|--------|
 |`⋆`              | Agent location
-|`\#`             | Wall
+|`#`             | Wall
 |`a` (lower case) | Key
 |`A` (upper case) | Door
 |`1` (numeric)    | Goal (terminates episode).
@@ -89,15 +89,15 @@ The `DynamicProgramming()` class implements two dynamic programming algorithms, 
 The difference between value iteration and Q-value iteration is that value iteration directly considers the value of the next state, whereas Q-value iteration considers the value of the next state-action pair.
 
 ### Value Iteration
-The value iteration function is defined as the expected return of taking an action $a$ in state $s$ and following policy $\pi$.
+The value iteration function $V(s)$ is defined as the expected return of taking an action $a$ in state $s$ and following policy $\pi$.
 $$V(s)=\sum_{a \in A}^{} \pi(a|s)\Big[\sum_{s' \in S}T(s'|s,a)[r+\gamma\cdot V(s')\Big]$$
 
-Where $π(a|s)$ is the policy. It gives the probabality of action $a$ given the state $s$.
+Where $π(a|s)$ is the policy. It gives the conditional probabality of action $a$ given the state $s$.
 
 The value iteration algorithm is implemented in the `value_iteration(self,env,gamma=1.0,theta=0.001)` method of the `DynamicProgramming()` class. The algorithm terminates when the difference between the old and new value table is smaller than theta. The algorithm returns the optimal value table. The optimal value table is be stored in the `V_s` attribute of the `DynamicProgramming()` object.
 
 ### Q-value Iteration
-The Q-value function is defined as the expected return of taking an action $a$ in state $s$ and following policy $\pi$.
+The Q-value function $Q(s,a)$ is defined as the expected return of taking an action $a$ in state $s$ and following policy $\pi$.
 $$Q(s,a)=\sum_{s' \in S}T(s'|s,a)[r+\gamma\cdot V(s')]$$
 
 The Q-value iteration algorithm is implemented in the `Q_value_iteration(self,env,gamma=1.0,theta=0.001)` method of the `DynamicProgramming()` class. The algorithm terminates when the difference between the old and new Q-value table is smaller than theta. The algorithm returns the optimal Q-value table. The optimal Q-value table is stored in the `Q_sa` attribute of the `DynamicProgramming()` object.

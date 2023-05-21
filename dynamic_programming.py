@@ -5,8 +5,8 @@ from world import World
 class DynamicProgramming:
 
     def __init__(self):
-        self.V_s = None # will store a potential value solution table
-        self.Q_sa = None # will store a potential action-value solution table
+        self.V_s = None # Will store the value solution table
+        self.Q_sa = None # Will store the action-value solution table
 
         
     def value_iteration(self,env,gamma = 1.0, theta=0.001):
@@ -54,7 +54,7 @@ class DynamicProgramming:
         theta is the acceptance threshold for convergence '''
 
         print("Starting Q-value Iteration (QI)")
-        # initialize state-action value table
+        # Initialize state-action value table
         Q_sa = np.zeros([env.n_states,env.n_actions])
 
         max_iter = 10_000
@@ -71,10 +71,10 @@ class DynamicProgramming:
  
                     for s_next in env.states:
                         if s_next == tf[0]:
-                            # if the next state is the one we transitioned to
+                            # If the next state is the one we transitioned to
                             reward += gamma * np.max(Q_sa[s_next])
                     
-                    # update values for state/action combination
+                    # Update values for state/action combination
                     Q_new[s][i_action] = reward
                     delta = max(delta, abs(Q_sa[s][i_action] - Q_new[s][i_action]))
 
