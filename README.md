@@ -1,7 +1,8 @@
 # Markov decision process using Dynamic Programming
+A primer on Reinforcement Learning. Our root question for this project is how we formulate any problem in Reinforcement Learning mathematically. This is where the Markov Decision Process (MDP) comes in. Furthermore, the MDP is solved using Dynamic Programming.
 
 ## Introduction
-In this project, we will implement dynamic programming algorithms to solve a Markov decision process (MDP). We will use the MDP to model a grid world environment, and we will use dynamic programming to find the optimal policy for the agent. We will implement the value iteration and Q-value iteration algorithms. We will then execute the optimal policy on the environment, and visualize the agent’s trajectory.
+In this project, we will implement dynamic programming algorithms to solve a MDP. We will use the MDP to model a grid world environment, and we will use dynamic programming to find the optimal policy for the agent. We will implement the value iteration and Q-value iteration algorithms. We will then execute the optimal policy on the environment, and visualize the agent’s trajectory.
 
 The goal of the agent is to find the goal state in the environment. The agent can move in four directions: up, down, left, and right. The agent can hold keys, and can open doors. The agent can only move into a door if it holds the corresponding key. The agent can only hold one key at a time. The agent receives a reward (or penalty) of $−1$ for every transition, except when it reaches the goal: the reward is then equal to 10 times the numeric element at the goal. So, in the example below, the reward at the goal is equal to 30.
 
